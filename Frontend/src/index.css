@@ -1,0 +1,11 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+  --background-light-grey: rgba(219, 222, 226, 1);
+  --black-font: rgba(33, 25, 25, 1);
+  --background-white: rgba(248, 249, 254, 1);
+  --text-grey: rgba(248, 249, 254, 1);
+  --button-red: rgba(180, 34, 34, 1);
+  --button-black: rgba(17, 17, 17, 0.92);
+  --button-disabled: rgba(17, 17, 17, 0.51);
+}

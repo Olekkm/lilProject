@@ -1,0 +1,164 @@
+.LinkButton {
+  padding-top: 0.2rem;
+  padding-bottom: 0.1rem;
+  font-size: 1.6rem;
+  color: var(--black-font);
+}
+
+.LinkButton.selected {
+  text-decoration: underline;
+}
+
+.LinkButton:hover {
+  text-decoration: underline;
+}
+
+.Button {
+  color: var(--background-white);
+  background-color: var(--button-black);
+  font-size: 2rem;
+  border: 0px;
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  border-radius: 14px;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.Button:hover {
+  box-shadow: 0px 2px 5px var(--button-disabled);
+}
+
+.Button:disabled {
+  pointer-events: none;
+  background-color: var(--button-disabled);
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 5.4rem;
+  font-style: italic;
+  color: var(--black-font);
+}
+
+.Header {
+  height: 70px;
+  background-color: var(--background-light-grey);
+  position: fixed;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.59);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.HeaderNavigation {
+  display: flex;
+  gap: 9rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Logo {
+  padding: 10rem;
+  height: 5rem;
+}
+
+.Body {
+  width: 100%;
+  min-height: calc(100vh - 20rem);
+  margin-top: 20rem;
+  background-color: var(--background-light-grey);
+  border-radius: 15px 15px 0px 0px;
+  display: "block";
+  /* Центрирование по горизонтали */
+  padding-top: 1rem;
+}
+.defaultText {
+  font-size: 1.6rem;
+  color: var(--black-font);
+}
+
+.semiHeaderText {
+  font-size: 2.4rem;
+  color: var(--black-font);
+}
+
+h2 {
+  margin-bottom: 3rem;
+  font-size: 2.4rem;
+  color: var(--black-font);
+}
+
+.BackgroundPhoto {
+  position: fixed;
+  top: -490px;
+  width: 100%;
+  z-index: -100;
+  object-fit: contain;
+  max-width: 100%;
+}
+.classicFrame {
+  padding: 3rem;
+  max-width: 700px;
+  margin: auto;
+  background-color: var(--background-white);
+  border-radius: 25px;
+  box-shadow: 0px 0px 2.5px 0;
+}
+
+input,
+select {
+  display: inline;
+  width: 300px;
+  box-sizing: border-box; /* Элементы одинаковой ширины */
+  max-width: 300px; /* Ограничиваем максимальную ширину */
+  padding: 1rem; /* Внутренние отступы для удобства */
+  border: 1px solid #ccc; /* Лёгкая граница */
+  border-radius: 8px; /* Закругление углов */
+  background-color: #fff; /* Белый фон */
+  color: #000; /* Чёрный текст */
+  font-size: 1.6rem; /* Размер текста */
+  outline: none; /* Убираем стандартное выделение */
+}
+
+input::placeholder {
+  color: var(--button-disabled); /* Серый цвет для плейсхолдера */
+}
+
+input:focus,
+select:focus {
+  border-color: var(--button-black); /* Синий цвет границы при фокусе */
+  box-shadow: 0 0 4px var(--black-font); /* Лёгкое свечение при фокусе */
+}
+
+label {
+  color: var(--black-font);
+  font-size: 1.6rem;
+}
+
+.basePairDiv {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: space-between;
+}
+.checkbox {
+  display: inline;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--black-font);
+}
+
+.checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  vertical-align: middle;
+}
