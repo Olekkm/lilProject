@@ -162,3 +162,12 @@ label {
   background-color: #fff;
   vertical-align: middle;
 }
+
+dialog {
+  width: 400px;
+  margin: 25rem auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 100;
+}

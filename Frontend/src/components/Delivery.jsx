@@ -1,52 +1,53 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import KeyValue from "./KeyValue";
+import moment from "moment";
 
 export default function Delivery({ number }) {
-  const [delivery, setDelivery] = useState({});
-
-  const getDelivery = useCallback(async function (number) {
-    try {
-      const response = await fetch(`/api/delivery/${number}`);
-      setDelivery(await response.json());
-    } catch (e) {
-      return;
-    }
-  }, []);
+  const [{ data, path, requests }, setDelivery] = useState({});
 
   useEffect(() => {
-    getDelivery();
+    (async function getData() {
+      const ans = await fetch(`/api/delivery/${number}`);
+      const response = await ans.json();
+      setDelivery(response);
+    })();
     return;
-  }, [getDelivery]);
+  }, [number]);
+
   return (
     <div className="classicFrame" style={{ marginTop: "5rem" }}>
+      {" "}
+      {console.log()}
       <div className="basePairDiv">
         <KeyValue _key="№">{number}</KeyValue>
-        <KeyValue _key="Статус">
-          {delivery ? delivery?.status : "loading..."}
-        </KeyValue>
+        <KeyValue _key="Статус">{data ? data?.status : "loading..."}</KeyValue>
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>
         <KeyValue _key="Cоздано">
-          {delivery ? delivery?.created : "loading..."}
+          {data
+            ? moment(data?.created_date).format("DD.MM.YYYY")
+            : "loading..."}
         </KeyValue>
         <KeyValue _key="Завершено">
-          {delivery ? delivery?.finished : "loading..."}
+          {!data
+            ? "loading..."
+            : data.finaled_date
+            ? moment(data.finaled_date).format("DD.MM.YYYY")
+            : "Не завершено"}
         </KeyValue>
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>
-        <KeyValue _key="Авто">
-          {delivery ? delivery?.vehicle : "loading..."}
-        </KeyValue>
+        <KeyValue _key="Авто">{data ? data?.car : "loading..."}</KeyValue>
         <KeyValue _key="Водитель">
-          {delivery ? delivery?.driverName : "loading..."}
+          {data ? data?.drivers_name : "loading..."}
         </KeyValue>
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>
         <KeyValue _key="Категория">
-          {delivery ? delivery?.category : "loading..."}
+          {data ? data?.car_category : "loading..."}
         </KeyValue>
         <KeyValue _key="Тел.">
-          {delivery ? delivery?.driverPhone : "loading..."}
+          {data ? data?.drivers_phone : "loading..."}
         </KeyValue>
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>
@@ -54,16 +55,34 @@ export default function Delivery({ number }) {
           <h4 className="semiHeaderText" style={{ marginBottom: "1rem" }}>
             Путь:
           </h4>
-          {delivery?.Path?.map((point) => (
-            <KeyValue key={point.number}>{point.Name}</KeyValue>
+
+          {path?.map((point) => (
+            <div key={point.location}>
+              <KeyValue
+                key={point.stage}
+                _key={point.stage}
+                keyStyle={{ fontSize: "1.6rem" }}
+              >
+                {point.location}
+              </KeyValue>
+            </div>
           ))}
         </div>
         <div>
           <h4 className="semiHeaderText" style={{ marginBottom: "1rem" }}>
-            Связанные доставки:
+            Связанные заявки:
           </h4>
-          {delivery?.requests?.map((request) => (
-            <KeyValue key={request.number}>{request.Name}</KeyValue>
+          {requests && requests.length == 0 && (
+            <div style={{ textAlign: "end" }} className="defaultText">
+              Нет связанных заявок
+            </div>
+          )}
+          {requests?.map((request) => (
+            <div key={-request.request_id} style={{ textAlign: "end" }}>
+              <span className="defaultText" key={request.request_id}>
+                {request.request_id}
+              </span>
+            </div>
           ))}
         </div>
       </div>

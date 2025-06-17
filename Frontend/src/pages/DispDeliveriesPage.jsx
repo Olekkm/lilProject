@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import Request from "../components/Request";
+import Delivery from "../components/Delivery";
 
 export default function DispDeliveriesPage() {
-  const [deloveries, setDeliveries] = useState();
+  const [deliveries, setDeliveries] = useState();
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/deliveries");
+      const response = await fetch("/api/delivery");
       if (response) {
         setDeliveries(await response.json());
       }
@@ -17,14 +17,18 @@ export default function DispDeliveriesPage() {
 
   return (
     <>
-      {!deloveries && (
+      {!deliveries && (
         <div className="classicFrame" style={{ marginTop: "4rem" }}>
           <p className="DefaultText">Loading ...</p>
         </div>
       )}
-      {deloveries &&
-        deloveries.map((Delivery) => (
-          <Request number={Delivery} style={{ marginTop: "4rem" }} />
+      {deliveries &&
+        deliveries.map((delivery) => (
+          <Delivery
+            number={delivery.id}
+            key={delivery.id}
+            style={{ marginTop: "4rem" }}
+          />
         ))}
     </>
   );

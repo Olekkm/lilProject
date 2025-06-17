@@ -6,9 +6,9 @@ export default function FindPage() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/requests");
+      const response = await fetch("/api/request");
       if (response) {
-        setRequests(await response.JSON.parse());
+        setRequests(await response.json());
       }
       return;
     })();
@@ -24,7 +24,11 @@ export default function FindPage() {
       )}
       {requests &&
         requests.map((request) => (
-          <ClientRequest number={request} style={{ marginTop: "4rem" }} />
+          <ClientRequest
+            number={request.id}
+            key={request.id}
+            style={{ marginTop: "4rem" }}
+          />
         ))}
     </>
   );

@@ -6,9 +6,9 @@ export default function DispRequestPage() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/requests");
+      const response = await fetch("/api/request");
       if (response) {
-        setRequests(await response.JSON.parse());
+        setRequests(await response.json());
       }
       return;
     })();
@@ -24,7 +24,11 @@ export default function DispRequestPage() {
       )}
       {requests &&
         requests.map((request) => (
-          <Request number={request} style={{ marginTop: "4rem" }} />
+          <Request
+            number={request.id}
+            key={request.id}
+            style={{ marginTop: "4rem" }}
+          />
         ))}
     </>
   );

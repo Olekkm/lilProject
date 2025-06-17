@@ -5,12 +5,12 @@ import Select from "./Select";
 export default function ClientRequest({ number }) {
   const [request, setRequest] = useState();
   useEffect(() => {
-    async function getData() {
-      const ans = await fetch("/api/re");
+    (async function getData() {
+      const ans = await fetch(`/api/request/${number}`);
       setRequest(await ans.json());
-    }
+    })();
     return;
-  }, []);
+  }, [number]);
 
   return (
     <div className="classicFrame" style={{ marginTop: "5rem" }}>
@@ -22,16 +22,18 @@ export default function ClientRequest({ number }) {
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>
         <KeyValue _key="Откуда">
-          {request ? request?.from : "loading..."}
+          {request ? request?.location_from : "loading..."}
         </KeyValue>
         <KeyValue _key="Получатель">
-          {request ? request?.name : "loading..."}
+          {request ? request?.clients_name : "loading..."}
         </KeyValue>
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>
-        <KeyValue _key="Куда">{request ? request?.to : "loading..."}</KeyValue>
+        <KeyValue _key="Куда">
+          {request ? request?.location_to : "loading..."}
+        </KeyValue>
         <KeyValue _key="Тел.">
-          {request ? request?.phone : "loading..."}
+          {request ? request?.clients_phone : "loading..."}
         </KeyValue>
       </div>
       <div className="basePairDiv" style={{ marginTop: "2rem" }}>

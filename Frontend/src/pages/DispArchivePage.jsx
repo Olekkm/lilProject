@@ -6,7 +6,7 @@ export default function DispArchivePage() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/requests");
+      const response = await fetch("/api/request?from=archive");
       if (response) {
         setRequests(await response.json());
       }
@@ -24,7 +24,11 @@ export default function DispArchivePage() {
       )}
       {requests &&
         requests.map((request) => (
-          <Request number={request} style={{ marginTop: "4rem" }} />
+          <Request
+            number={request.id}
+            key={request.id}
+            style={{ marginTop: "4rem" }}
+          />
         ))}
     </>
   );
